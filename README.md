@@ -66,7 +66,7 @@ NewsRadar CLI uses SQLAlchemy to define models and interact with a SQLite databa
 
 #### 1. Clone the Repository
 
-git clone https://github.com/your-username/newsradar-cli.git
+git clone https://github.com/KenTuei/newsradarphase3
 cd newsradar-cli
  ## Install Dependencies
 - It’s recommended to use a virtual environment.(pipenv install & pipenv shell)
