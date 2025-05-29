@@ -14,7 +14,11 @@ class User(Base):
     email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     
-    saved_articles = relationship("SavedArticle", back_populates="user")
+    saved_articles = relationship(
+        "SavedArticle", 
+        back_populates="user", 
+        cascade="all, delete-orphan"
+    )
 
     @classmethod
     def create(cls, session, **kwargs):
@@ -47,7 +51,11 @@ class Source(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
     
-    articles = relationship("Article", back_populates="source")
+    articles = relationship(
+        "Article", 
+        back_populates="source", 
+        cascade="all, delete-orphan"
+    )
 
     @classmethod
     def create(cls, session, **kwargs):
@@ -85,7 +93,11 @@ class Article(Base):
     published_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     
     source = relationship("Source", back_populates="articles")
-    saved_by = relationship("SavedArticle", back_populates="article")
+    saved_by = relationship(
+        "SavedArticle", 
+        back_populates="article", 
+        cascade="all, delete-orphan"
+    )
 
     @classmethod
     def create(cls, session, **kwargs):
@@ -146,6 +158,3 @@ class SavedArticle(Base):
             session.commit()
             return True
         return False
-
-
-
